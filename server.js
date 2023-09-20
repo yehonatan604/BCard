@@ -1,3 +1,4 @@
+require("dotenv").config();
 const chalk = require("chalk");
 const express = require("express");
 const { handleError } = require("./utils/handleErrors");
@@ -6,7 +7,6 @@ const router = require("./router/router");
 const cors = require("./middlewares/cors");
 const logger = require("./logger/loggerService");
 const connectToDb = require("./DB/dbService");
-const config = require("config");
 const {
   generateInitialCards,
   generateInitialUsers,
@@ -22,7 +22,8 @@ app.use((err, req, res, next) => {
   handleError(res, 500, err.message);
 });
 
-const PORT = config.get("PORT");
+const PORT = process.env.PORT;
+console.log(process.env.NODE_ENV);
 
 app.listen(PORT, () => {
   console.log(chalk.blueBright(`Listening on: http://localhost:${PORT}`));
