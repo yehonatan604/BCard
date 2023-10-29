@@ -6,6 +6,7 @@ app.use(
   cors({
     "origin": "*",
     "methods": "GET,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
     code: 200,
   })
 );
