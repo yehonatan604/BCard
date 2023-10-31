@@ -6,7 +6,7 @@ app.use(
   cors({
     origin: ["192.168.1.178:3000", "http://localhost:3000", "*"],
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-    "preflightContinue": false,
+    "preflightContinue": true,
     code: 200,
   })
 );
