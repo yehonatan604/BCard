@@ -13,7 +13,7 @@ const {
 } = require("./initialData/initialDataService");
 
 app.use(cors());
-});app.use(logger);
+app.use(logger);
 app.use(express.json());
 app.use(express.static("./public"));
 app.use(router);
