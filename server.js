@@ -4,7 +4,7 @@ const express = require("express");
 const { handleError } = require("./utils/handleErrors");
 const app = express();
 const router = require("./router/router");
-const cors = require("cors");
+const cors = require("./middlewares/cors");
 const logger = require("./logger/loggerService");
 const connectToDb = require("./DB/dbService");
 const {
