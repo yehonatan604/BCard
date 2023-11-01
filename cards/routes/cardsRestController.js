@@ -83,7 +83,7 @@ router.put("/:id", auth, async (req, res) => {
       return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
 
     card = await normalizeCard(card);
-    resCard = await updateCard(cardId, card);
+    let resCard = await updateCard(cardId, card);
     return res.send(resCard);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);
