@@ -76,7 +76,7 @@ router.put("/:id", auth, async (req, res) => {
     if (error)
       return handleError(res, 400, `Joi Error: ${error.details[0].message}`);
     const cardFromDb = await getCard(cardId);
-    return res.json({cardFromDb.user_id, userId});
+    return res.json({card_user:cardFromDb.user_id, userId});
     if (userId !== cardFromDb.user_id) {
       const message =
         "Authorization Error: Only the user who created the business card can update its details";
