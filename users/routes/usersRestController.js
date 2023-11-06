@@ -92,7 +92,7 @@ router.put("/:id", auth, async (req, res) => {
     const userId = req.params.id;
     const user = req.user;
 
-    if (userId !== user._id)
+    if (userId !== user._id && !user.isAdmin)
       return handleError(
         res,
         403,
