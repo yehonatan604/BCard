@@ -25,9 +25,13 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT;
 console.log(process.env.NODE_ENV);
 
-app.listen(PORT, () => {
-  console.log(chalk.blueBright(`Listening on: http://localhost:${PORT}`));
-  connectToDb();
-  generateInitialCards();
-  generateInitialUsers();
+app.listen(PORT, async () => {
+  try {
+    console.log(chalk.blueBright(`Listening on: http://localhost:${PORT}`));
+    connectToDb();
+    let id = await generateInitialUsers();
+    generateInitialCards(id);
+  } catch (err) {
+    console.log(chalk.redBright(err));
+  }
 });

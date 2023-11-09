@@ -6,11 +6,10 @@ const data = require("./initialData.json");
 const normalizeUser = require("../users/helpers/normalizeUser");
 const { generateUserPassword } = require("../users/helpers/bcrypt");
 
-const generateInitialCards = async () => {
+const generateInitialCards = async (userId = "6376274068d78742d84f31d2") => {
   const { cards } = data;
-  cards.forEach(async card => {
+  cards.forEach(async (card) => {
     try {
-      const userId = "6376274068d78742d84f31d2";
       card = await normalizeCard(card, userId);
       await createCard(card);
       return;
@@ -20,17 +19,24 @@ const generateInitialCards = async () => {
   });
 };
 
-const generateInitialUsers = async () => {
-  const { users } = data;
-  users.forEach(async user => {
+const generateInitialUsers = () => {
+  return new Promise(async (ok, not) => {
+    const { users } = data;
+    let bizId = "";
     try {
-      user = await normalizeUser(user);
-      user.password = generateUserPassword(user.password);
-      await registerUser(user);
-      return;
+      for (let user of users) {
+        user = await normalizeUser(user);
+        user.password = generateUserPassword(user.password);
+        let data = await registerUser(user);
+        if (data && data._id && user.isBusiness && !user.isAdmin) {
+          bizId = data._id;
+        }
+      }
     } catch (error) {
-      return console.log(chalk.redBright(error.message));
+      // return console.log(chalk.redBright(error.message));
+      not(error.message);
     }
+    ok(bizId);
   });
 };
 

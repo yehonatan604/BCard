@@ -5,7 +5,7 @@
       "isBusiness": false,
       "phone": "050-0000000",
       "email": "regular@gmail.com",
-      "password": "Aa1234!",
+      "password": "Aa123456!",
       "address": {
         "country": "israel",
         "city": "tel-aviv",
@@ -19,7 +19,7 @@
       "isBusiness": true,
       "phone": "050-0000000",
       "email": "business@gmail.com",
-      "password": "Aa1234!",
+      "password": "Aa123456!",
       "address": {
         "country": "israel",
         "city": "tel-aviv",
