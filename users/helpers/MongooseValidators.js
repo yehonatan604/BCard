@@ -7,14 +7,20 @@ const URL = {
   lowercase: true,
 };
 
-const DEFAULT_VALIDATION = {
+const DEFAULT_VALIDATION_OPTIONAL = {
   type: String,
-  required: true,
   minLength: 2,
   maxLength: 256,
   trim: true,
   lowercase: true,
+  default: "000",
+};
+
+const DEFAULT_VALIDATION = {
+  ...DEFAULT_VALIDATION_OPTIONAL,
+  required: true,
 };
 
 exports.URL = URL;
 exports.DEFAULT_VALIDATION = DEFAULT_VALIDATION;
+exports.DEFAULT_VALIDATION_OPTIONAL = DEFAULT_VALIDATION_OPTIONAL;
