@@ -79,17 +79,16 @@ const updateCard = async (cardId, normalizedCard) => {
 
 const changeBizNumber = async (cardId, bizNumber) => {
   try {
-    const pipeline = [{ $set: { bizNumber: $set{bizNumber} } }];
-    const card = await Card.findByIdAndUpdate(
-      cardId,
-      pipeline,
-      { new: true }
-    );
+    let card = await Card.find({_id: cardId});
+    card.bizNumber = bizNumber;
+    let newCard = await Card.findByIdAndUpdate(cardId, card, {
+        new: true,
+      });
 
     if (!card)
       throw new Error("A card with this ID cannot be found in the database");
 
-    return Promise.resolve(card);
+    return Promise.resolve(newCard);
   } catch (error) {
     return handleBadRequest("Mongoose", error);
   }
