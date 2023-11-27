@@ -79,15 +79,11 @@ const updateCard = async (cardId, normalizedCard) => {
 
 const changeBizNumber = async (cardId, bizNumber) => {
   try {
-    let card = await Card.find({_id: cardId});
-    card.bizNumber = bizNumber;
-    let newCard = await Card.findByIdAndUpdate(cardId, card, {
-        new: true,
-      });
-
-    if (!card)
-      throw new Error("A card with this ID cannot be found in the database");
-
+    const card = await Card.findById(cardId);
+      if (!card)
+        throw new Error("A card with this ID cannot be found in the database");
+      card.bizNumber = bizNumber;
+      const newCard = await card.save();
     return Promise.resolve(newCard);
   } catch (error) {
     return handleBadRequest("Mongoose", error);
