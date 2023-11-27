@@ -79,9 +79,10 @@ const updateCard = async (cardId, normalizedCard) => {
 
 const changeBizNumber = async (cardId, bizNumber) => {
   try {
+    const pipeline = [{ $set: { isBusiness: bizNumber } }];
     const card = await Card.findByIdAndUpdate(
       cardId,
-      { bizNumber },
+      pipeline,
       { new: true }
     );
 
