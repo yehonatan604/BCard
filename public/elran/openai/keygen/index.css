@@ -1,0 +1,39 @@
+html,
+body {
+  height: 100%;
+}
+
+.form-keygen {
+  max-width: 330px;
+  padding: 1rem;
+}
+
+.form-keygen .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-keygen input[type="password"] {
+  margin-bottom: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-keygen input[type="date"] {
+  border-radius: 0;
+}
+
+.form-keygen input[type="time"] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-keygen #validationFeedback {
+  max-width: 330px;
+}
+
+.validtoken {
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  color: #6f42c1;
+  padding: 1rem;
+}
