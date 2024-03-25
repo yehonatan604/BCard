@@ -16,4 +16,12 @@ const currentTime = () => {
   return { year, month, day, hours, minutes, seconds };
 };
 
-module.exports = currentTime;
+const toEpoch = (ts) => {
+  const [hours, minutes] = ts.split(":").map(Number);
+  const today = new Date();
+  today.setHours(hours, minutes, 0, 0);
+  const epochTime = today.getTime();
+  return Math.floor(epochTime / 1000);
+};
+
+module.exports = { currentTime, toEpoch };
