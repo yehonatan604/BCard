@@ -12,14 +12,11 @@ const {
   generateInitialUsers,
 } = require("./initialData/initialDataService");
 const axios = require('axios');
-const { dailyLimit, hourlyLimit } = require("./middlewares/rateLimiters")
 
 app.use(cors);
 app.use(logger);
 app.use(express.json());
 app.use(express.static("./public"));
-app.use(hourlyLimit);
-app.use(dailyLimit);
 app.use(router);
 
 app.use((err, req, res, next) => {
