@@ -1,4 +1,4 @@
-const apiBase = `./elran/openai`
+const apiBase = `https://monkfish-app-z9uza.ondigitalocean.app/bcard2/elran/openai`
 
 const elmKeygenForm = document.querySelector("#keygenForm");
 const elmDate = document.querySelector("#floatingDateStart");
