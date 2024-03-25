@@ -14,7 +14,7 @@ elmKeygenForm.addEventListener("submit", async (e) => {
   let end = document.querySelector("#floatingTimeEnd").value;
   let elmValidationFeedback = document.querySelector("#validationFeedback");
   try {
-    const response = await fetch(`${apiBase}/keygen`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({password,start,end}) })
+    const response = await fetch('https://monkfish-app-z9uza.ondigitalocean.app/bcard2/elran/openai/keygen', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({password,start,end}) })
     if (!response.ok) throw new Error(response.statusText)
     const data = await response.json()
     const { error,token } = data
