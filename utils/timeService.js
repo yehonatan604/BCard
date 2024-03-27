@@ -19,7 +19,7 @@ const currentTime = () => {
 const toEpoch = (ts) => {
   const [hours, minutes] = ts.split(":").map(Number);
   const today = new Date();
-  today.setHours(hours-2, minutes, 0, 0);
+  today.setHours((hours-2), minutes, 0, 0);
   const epochTime = today.getTime();
   return Math.floor(epochTime / 1000);
 };
