@@ -38,6 +38,7 @@ const proxy = async (req, res) => {
     forwardBody.max_tokens: parseInt(process.env.MAX_TOKENS) || 1000;
   } else if (originalUrl.startsWith('/v1/audio/speech')) {
     forwardBody.model: 'tts-1';
+    forwardBody.response_format: 'mp3';
   } else if (originalUrl.startsWith('/v1/images/generations')) {
     forwardBody.n: 1;
     forwardBody.size: '1024x1024';
