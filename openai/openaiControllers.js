@@ -31,11 +31,19 @@ const keygen = (req, res) => {
 
 const proxy = async (req, res) => {
   const openAiUrl = `https://api.openai.com${req.originalUrl.replace('/elran/openai', '')}`;
-  if (req.body.model !=== 'dall-e-3') {
-    const { token, ...forwardBody } = { ...req.body, max_tokens: parseInt(process.env.MAX_TOKENS) || 250 };
+  const forwardBody = {...req.body};  
+  const originalUrl = req.originalUrl.toLowerCase();
+  if (originalUrl.startsWith('/v1/chat/completions')) {
+    forwardBody.model: 'gpt-3.5-turbo-1106';
+    forwardBody.max_tokens: parseInt(process.env.MAX_TOKENS) || 1000;
+  } else if (originalUrl.startsWith('/v1/audio/speech')) {
+    forwardBody.model: 'tts-1';
+  } else if (originalUrl.startsWith('/v1/images/generations')) {
+    forwardBody.n: 1;
+    forwardBody.size: '1024x1024';
   } else {
-    const { token, ...forwardBody } = { ...req.body, size: "1024x1024" };
-  } 
+    return res.status(400).json(`Endpoint '${req.originalUrl}' is not supported.`);
+  }
   try {
     const response = await axios({
       method: req.method,
