@@ -9,6 +9,7 @@ const validateToken = (req,res,next) => {
       if (err.name === "TokenExpiredError") return res.status(400).json({ error: "Token expired." });
       return res.status(400).json({ error: "Invalid token." });
     } else {
+      delete req.body.token;
       return next();
     }
   });
