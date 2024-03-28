@@ -31,7 +31,7 @@ const keygen = (req, res) => {
 
 const proxy = async (req, res) => {
   const openAiUrl = `https://api.openai.com${req.originalUrl.replace('/elran/openai', '')}`;
-  if (req.body.token !=== 'dall-e-3') {
+  if (req.body.model !=== 'dall-e-3') {
     const { token, ...forwardBody } = { ...req.body, max_tokens: parseInt(process.env.MAX_TOKENS) || 250 };
   } else {
     const { token, ...forwardBody } = { ...req.body, size: "1024x1024" };
