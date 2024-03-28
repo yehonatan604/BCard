@@ -34,7 +34,7 @@ const proxy = async (req, res) => {
   if (req.body.token !=== 'dall-e-3') {
     const { token, ...forwardBody } = { ...req.body, max_tokens: parseInt(process.env.MAX_TOKENS) || 250 };
   } else {
-    const { token, ...forwardBody } = { ...req.body, size: "512x5x12" };
+    const { token, ...forwardBody } = { ...req.body, size: "1024x1024" };
   } 
   try {
     const response = await axios({
