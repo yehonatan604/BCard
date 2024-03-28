@@ -31,7 +31,11 @@ const keygen = (req, res) => {
 
 const proxy = async (req, res) => {
   const openAiUrl = `https://api.openai.com${req.originalUrl.replace('/elran/openai', '')}`;
-  const { token, ...forwardBody } = { ...req.body, max_tokens: parseInt(process.env.MAX_TOKENS) || 100 };
+  if (req.body.token !=== 'dall-e-3') {
+    const { token, ...forwardBody } = { ...req.body, max_tokens: parseInt(process.env.MAX_TOKENS) || 250 };
+  } else {
+    const { token, ...forwardBody } = { ...req.body, size: "512x5x12" };
+  } 
   try {
     const response = await axios({
       method: req.method,
